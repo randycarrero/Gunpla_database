@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/app/app.dart';
+import 'package:gunpla_database/backend/backend.dart';
 
-void main() => runApp(GunplaDatabaseApp());
+void main() {
+  final backend = Backend('https://api.spacexdata.com/v4');
 
-
+  void main() => runApp(
+        GunplaDatabaseApp(
+          backend: backend,
+        ),
+      );
+}

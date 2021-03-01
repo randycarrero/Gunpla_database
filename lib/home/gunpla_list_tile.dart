@@ -14,8 +14,8 @@ class GunplaListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      title: const Text('Hello Gunpla'),
-      subtitle: const Text('I am a subtitle'),
+      title: Text(gunpla.name),
+      subtitle: Text(gunpla.description),
     );
   }
 }
