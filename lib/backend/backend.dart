@@ -1,10 +1,32 @@
 import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Backend {
   const Backend(this.hostUrl);
   final String hostUrl;
   Future<List<Gunpla>> getGunplas() async {
     final url = '$hostUrl/Gunplas';
+
+    final response = await http.get(url);
+    if (response.statusCode != 200) {
+      throw Exception(response.reasonPhrase);
+    }
+    final body = response.body;
+    final jsonData = json.decode(body) as List;
+    final gunplas = jsonData.map((jsonMap) {
+      return Gunpla(
+        id: jsonMap['id'],
+        name: jsonMap['name'],
+        description: jsonMap['description'],
+        active: jsonMap['active'],
+        boosters: jsonMap['boosters'],
+        flickrImages: List<String>.from(jsonMap['flickr_images']),
+      );
+    }).toList();
+
+
+========
     return const [
       Gunpla(
         id: 'flacon_1',
