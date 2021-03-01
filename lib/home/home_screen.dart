@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gunpla_database/home/gunpla_list_tile.dart';
 import 'package:gunpla_database/backend/backend.dart';
 import 'package:provider/provider.dart';
+import 'package:gunpla_database/gunpla_details/gunpla_details_screen.dart';
 
 import 'gunpla_list_tile.dart';
 
@@ -27,11 +28,21 @@ class HomeScreen extends StatelessWidget {
             final gunplas = snapshot.data;
             return ListView(
               children: [
-                for (final gunpla in gunplas)
+                for (final gunpla in gunplas) ...[
                   GunplaListTile(
                     gunpla: gunpla,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return GunplaDetailsScreen(gunpla: gunpla);
+                          },
+                        ),
+                      );
+                    },
                   ),
+                  const Divider(height: 0.0),
+                ]
               ],
             );
           }
