@@ -5,9 +5,9 @@ import 'package:gunpla_database/backend/backend.dart';
 void main() {
   final backend = Backend('https://api.spacexdata.com/v4');
 
-  void main() => runApp(
-        GunplaDatabaseApp(
-          backend: backend,
-        ),
-      );
+  runApp(
+    GunplaDatabseApp(
+      backend: backend,
+    ),
+  );
 }
