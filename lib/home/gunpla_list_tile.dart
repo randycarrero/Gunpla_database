@@ -8,8 +8,10 @@ class GunplaListTile extends StatelessWidget {
     @required this.onTap,
   })  : assert(gunpla != null),
         super(key: key);
+
   final Gunpla gunpla;
   final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:gunpla_database/home/gunpla_list_tile.dart';
 import 'package:gunpla_database/backend/backend.dart';
-import 'package:provider/provider.dart';
+import 'package:gunpla_database/home/gunpla_list_tile.dart';
 import 'package:gunpla_database/gunpla_details/gunpla_details_screen.dart';
-
-import 'gunpla_list_tile.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gunpla Database'),
+        title: const Text('Gunpla Guide'),
       ),
       body: FutureBuilder(
         future: context.read<Backend>().getGunplas(),
@@ -26,6 +24,7 @@ class HomeScreen extends StatelessWidget {
             );
           } else {
             final gunplas = snapshot.data;
+
             return ListView(
               children: [
                 for (final gunpla in gunplas) ...[

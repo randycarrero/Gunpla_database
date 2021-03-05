@@ -6,7 +6,7 @@ void main() {
   final backend = Backend('https://api.spacexdata.com/v4');
 
   runApp(
-    GunplaDatabseApp(
+    GunplaDatabaseApp(
       backend: backend,
     ),
   );
