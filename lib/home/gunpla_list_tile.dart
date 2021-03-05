@@ -38,7 +38,7 @@ class GunplaListTile extends StatelessWidget {
         child: Text(gunpla.name),
       ),
       subtitle: Text(
-        gunpla.description,
+        gunpla.series,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
       ),

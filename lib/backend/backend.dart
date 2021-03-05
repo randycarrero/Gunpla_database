@@ -44,42 +44,27 @@ class Gunpla {
   const Gunpla({
     @required this.id,
     @required this.name,
-    @required this.description,
-    @required this.active,
-    @required this.boosters,
+    @required this.series,
     @required this.flickrImages,
-    @required this.firstFlight,
-    @required this.height,
-    @required this.diameter,
-    @required this.mass,
-    @required this.wikipedia,
+    @required this.scale,
+    @required this.grade,
   });
 
   final String id;
   final String name;
-  final String description;
-  final bool active;
-  final int boosters;
+  final String series;
   final List<String> flickrImages;
-  final DateTime firstFlight;
-  final double height;
-  final double diameter;
-  final double mass;
-  final String wikipedia;
+  final String scale;
+  final String grade;
 
   factory Gunpla.fromJson(Map<String, dynamic> json) {
     return Gunpla(
       id: json['id'],
       name: json['name'],
-      description: json['description'],
-      active: json['active'],
-      boosters: json['boosters'],
+      series: json['series'],
       flickrImages: List<String>.from(json['flickr_images']),
-      firstFlight: DateTime.parse(json['first_flight']),
-      height: (json['height']['meters'] as num).toDouble(),
-      diameter: (json['diameter']['meters'] as num).toDouble(),
-      mass: (json['mass']['kg'] as num).toDouble(),
-      wikipedia: json['wikipedia'],
+      scale: json['Scale'],
+      grade: json['Grade'],
     );
   }
 }
