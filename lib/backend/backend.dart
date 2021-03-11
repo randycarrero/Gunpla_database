@@ -12,8 +12,6 @@ class Backend {
   Future<List<Gunpla>> getGunplas() async {
     final url = '$hostUrl/Gunplas';
 
-    // Fetch the data from the API.
-    // Since `http.get` returns a `Future`, we need to use `await` here.
     final response = await http.get(url);
 
     // If the request failed, we throw an exception.
@@ -40,31 +38,48 @@ class Backend {
   }
 }
 
+List<Gunpla> gunplaFromJson(String str) =>
+    List<Gunpla>.from(json.decode(str).map((x) => Gunpla.fromJson(x)));
+
+String gunplaToJson(List<Gunpla> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class Gunpla {
-  const Gunpla({
-    @required this.id,
-    @required this.name,
-    @required this.series,
-    @required this.flickrImages,
-    @required this.scale,
-    @required this.grade,
+  Gunpla({
+    this.userId,
+    this.id,
+    this.image,
+    this.name,
+    this.series,
+    this.grade,
+    this.scale,
   });
 
-  final String id;
-  final String name;
-  final String series;
-  final List<String> flickrImages;
-  final String scale;
-  final String grade;
+  int userId;
+  int id;
+  String image;
+  String name;
+  String series;
+  String grade;
+  String scale;
 
-  factory Gunpla.fromJson(Map<String, dynamic> json) {
-    return Gunpla(
-      id: json['id'],
-      name: json['name'],
-      series: json['series'],
-      flickrImages: List<String>.from(json['flickr_images']),
-      scale: json['Scale'],
-      grade: json['Grade'],
-    );
-  }
+  factory Gunpla.fromJson(Map<String, dynamic> json) => Gunpla(
+        userId: json["userId"],
+        id: json["id"],
+        image: json["image"] == null ? null : json["image"],
+        name: json["name"],
+        series: json["series"],
+        grade: json["grade"],
+        scale: json["scale"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "userId": userId,
+        "id": id,
+        "image": image == null ? null : image,
+        "name": name,
+        "series": series,
+        "grade": grade,
+        "scale": scale,
+      };
 }

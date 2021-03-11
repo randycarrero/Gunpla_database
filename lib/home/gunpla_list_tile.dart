@@ -17,7 +17,7 @@ class GunplaListTile extends StatelessWidget {
     return ListTile(
       isThreeLine: true,
       onTap: onTap,
-      leading: gunpla.flickrImages.isEmpty
+      leading: gunpla.image.isEmpty
           ? null
           : Hero(
               tag: 'hero-${gunpla.id}-image',
@@ -27,7 +27,7 @@ class GunplaListTile extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 3 / 2,
                   child: Image.network(
-                    gunpla.flickrImages.first,
+                    gunpla.image,
                     fit: BoxFit.cover,
                   ),
                 ),

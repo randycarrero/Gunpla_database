@@ -1,7 +1,6 @@
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class GunplaDetailsScreen extends StatelessWidget {
   const GunplaDetailsScreen({
@@ -22,7 +21,7 @@ class GunplaDetailsScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          if (gunpla.flickrImages.isNotEmpty) _ImageHeader(gunpla: gunpla),
+          if (gunpla.image.isNotEmpty) _ImageHeader(gunpla: gunpla),
           ListTile(
             title: Text(
               gunpla.name,
@@ -38,14 +37,15 @@ class GunplaDetailsScreen extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            title: Text('${gunpla.grade} m'),
-            subtitle: const Text('Grades'),
+            leading: const Icon(AntIcons.column_width),
+            title: Text('${gunpla.scale} m'),
+            subtitle: const Text('in Scale'),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.colum_height),
-            title: Text('${gunpla.scale} m'),
-            subtitle: const Text('Scales'),
+            title: Text('${gunpla.grade} m'),
+            subtitle: const Text(' Grade'),
           ),
           const Divider(),
           Padding(
@@ -74,15 +74,7 @@ class _ImageHeader extends StatelessWidget {
       height: 250,
       child: Hero(
         tag: 'hero-${gunpla.id}-image',
-        child: PageView(
-          children: [
-            for (final url in gunpla.flickrImages)
-              Image.network(
-                url,
-                fit: BoxFit.cover,
-              ),
-          ],
-        ),
+        child: PageView(),
       ),
     );
   }
