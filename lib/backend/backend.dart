@@ -10,11 +10,10 @@ class Backend {
   final String hostUrl;
 
   Future<List<Gunpla>> getGunplas() async {
-    final url = '$hostUrl/Gunplas';
+    final url = '$hostUrl';
 
     final response = await http.get(url);
 
-    // If the request failed, we throw an exception.
     if (response.statusCode != 200) {
       throw HttpException(
         '${response.statusCode}: ${response.reasonPhrase}',
@@ -22,15 +21,10 @@ class Backend {
       );
     }
 
-    // Get the JSON data from the response.
     final body = response.body;
 
-    // Convert the body, a String, into a JSON object.
-    // To do this, use Dart's built-in JSON decoder.
-    // We know this returns a `List`, so we type-cast it into a `List<dynamic>`.
     final jsonData = json.decode(body) as List;
 
-    // Convert every item in the list into a `Gunpla`.
     final gunplas =
         jsonData.map((jsonObject) => Gunpla.fromJson(jsonObject)).toList();
 
@@ -46,7 +40,6 @@ String gunplaToJson(List<Gunpla> data) =>
 
 class Gunpla {
   Gunpla({
-    this.userId,
     this.id,
     this.image,
     this.name,
@@ -55,7 +48,6 @@ class Gunpla {
     this.scale,
   });
 
-  int userId;
   int id;
   String image;
   String name;
@@ -64,7 +56,6 @@ class Gunpla {
   String scale;
 
   factory Gunpla.fromJson(Map<String, dynamic> json) => Gunpla(
-        userId: json["userId"],
         id: json["id"],
         image: json["image"] == null ? null : json["image"],
         name: json["name"],
@@ -74,7 +65,6 @@ class Gunpla {
       );
 
   Map<String, dynamic> toJson() => {
-        "userId": userId,
         "id": id,
         "image": image == null ? null : image,
         "name": name,
