@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gunpla Guide'),
+        title: const Text('Gunpla Database'),
       ),
       body: FutureBuilder(
         future: context.read<Backend>().getGunplas(),

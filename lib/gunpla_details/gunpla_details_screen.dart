@@ -1,7 +1,6 @@
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class GunplaDetailsScreen extends StatelessWidget {
   const GunplaDetailsScreen({
@@ -11,17 +10,6 @@ class GunplaDetailsScreen extends StatelessWidget {
         super(key: key);
 
   final Gunpla gunpla;
-
-  bool get _hasAlreadyFlown => gunpla.firstFlight.isBefore(DateTime.now());
-
-  int get _daysSinceFirstFlight =>
-      gunpla.firstFlight.difference(DateTime.now()).abs().inDays;
-
-  String get _firstFlightLabel {
-    final date = gunpla.firstFlight;
-
-    return '${date.year}-${date.month}-${date.day}';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,64 +21,37 @@ class GunplaDetailsScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          if (gunpla.flickrImages.isNotEmpty) _ImageHeader(gunpla: gunpla),
+          if (gunpla.image.isNotEmpty) _ImageHeader(gunpla: gunpla),
           ListTile(
             title: Text(
               gunpla.name,
               style: textTheme.headline6,
             ),
-            subtitle: gunpla.active ? null : Text('Inactive'),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              gunpla.description,
+              gunpla.series,
               style: textTheme.subtitle1,
-            ),
-          ),
-          ListTile(
-            leading: const Icon(AntIcons.calendar),
-            title: Text(
-              _hasAlreadyFlown
-                  ? '$_daysSinceFirstFlight days since first flight'
-                  : '$_daysSinceFirstFlight days until first flight',
-            ),
-            subtitle: Text(
-              _hasAlreadyFlown
-                  ? 'First flew on $_firstFlightLabel'
-                  : 'Scheduled to fly on $_firstFlightLabel',
             ),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.column_width),
-            title: Text('${gunpla.diameter} m'),
-            subtitle: const Text('in diameter'),
+            title: Text('${gunpla.scale} m'),
+            subtitle: const Text('in Scale'),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.colum_height),
-            title: Text('${gunpla.height} m'),
-            subtitle: const Text('in height'),
+            title: Text('${gunpla.grade} m'),
+            subtitle: const Text(' Grade'),
           ),
           const Divider(),
-          ListTile(
-            leading: const Icon(AntIcons.arrow_down),
-            title: Text('${gunpla.mass} kg'),
-            subtitle: Text('total mass'),
-          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
               height: 56.0,
-              child: ElevatedButton(
-                onPressed: () {
-                  launch(gunpla.wikipedia);
-                },
-                child: Center(
-                  child: Text('View Wikipedia Article'),
-                ),
-              ),
             ),
           ),
         ],
@@ -113,15 +74,7 @@ class _ImageHeader extends StatelessWidget {
       height: 250,
       child: Hero(
         tag: 'hero-${gunpla.id}-image',
-        child: PageView(
-          children: [
-            for (final url in gunpla.flickrImages)
-              Image.network(
-                url,
-                fit: BoxFit.cover,
-              ),
-          ],
-        ),
+        child: PageView(),
       ),
     );
   }
