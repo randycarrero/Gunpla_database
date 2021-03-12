@@ -38,13 +38,13 @@ class GunplaDetailsScreen extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.column_width),
-            title: Text('${gunpla.scale} m'),
+            title: Text('${gunpla.scale}'),
             subtitle: const Text('in Scale'),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.colum_height),
-            title: Text('${gunpla.grade} m'),
+            title: Text('${gunpla.grade}'),
             subtitle: const Text(' Grade'),
           ),
           const Divider(),
