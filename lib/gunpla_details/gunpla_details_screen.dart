@@ -74,7 +74,9 @@ class _ImageHeader extends StatelessWidget {
       height: 250,
       child: Hero(
         tag: 'hero-${gunpla.id}-image',
-        child: PageView(),
+        child: Image.network(
+        gunpla.image,
+        fit: BoxFit.cover,
       ),
     );
   }
