@@ -77,6 +77,7 @@ class _ImageHeader extends StatelessWidget {
         child: Image.network(
         gunpla.image,
         fit: BoxFit.cover,
+        ),
       ),
     );
   }
