@@ -46,6 +46,7 @@ class Gunpla {
     this.series,
     this.grade,
     this.scale,
+    this.exclusive,
   });
 
   int id;
@@ -54,15 +55,16 @@ class Gunpla {
   String series;
   String grade;
   String scale;
+  String exclusive;
 
   factory Gunpla.fromJson(Map<String, dynamic> json) => Gunpla(
-        id: json["id"],
-        image: json["image"] == null ? null : json["image"],
-        name: json["name"],
-        series: json["series"],
-        grade: json["grade"],
-        scale: json["scale"],
-      );
+      id: json["id"],
+      image: json["image"] == null ? null : json["image"],
+      name: json["name"],
+      series: json["series"],
+      grade: json["grade"],
+      scale: json["scale"],
+      exclusive: json["exclusive"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -71,5 +73,6 @@ class Gunpla {
         "series": series,
         "grade": grade,
         "scale": scale,
+        "exclusive": exclusive,
       };
 }
