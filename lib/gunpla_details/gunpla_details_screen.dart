@@ -1,6 +1,8 @@
 import 'package:ant_icons/ant_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 class GunplaDetailsScreen extends StatelessWidget {
   const GunplaDetailsScreen({
@@ -39,13 +41,19 @@ class GunplaDetailsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(AntIcons.column_width),
             title: Text('${gunpla.scale}'),
-            subtitle: const Text('in Scale'),
+            subtitle: const Text('Available Scale'),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.colum_height),
             title: Text('${gunpla.grade}'),
-            subtitle: const Text(' Grade'),
+            subtitle: const Text('Available Grade'),
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(CupertinoIcons.star_fill),
+            title: Text('${gunpla.exclusive}'),
+            subtitle: const Text('Exclusive'),
           ),
           const Divider(),
           Padding(
@@ -75,8 +83,8 @@ class _ImageHeader extends StatelessWidget {
       child: Hero(
         tag: 'hero-${gunpla.id}-image',
         child: Image.network(
-        gunpla.image,
-        fit: BoxFit.cover,
+          gunpla.image,
+          fit: BoxFit.cover,
         ),
       ),
     );
