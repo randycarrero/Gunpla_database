@@ -10,6 +10,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gunpla Database'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.search), onPressed: () {})
+        ],
       ),
       body: FutureBuilder(
         future: context.read<Backend>().getGunplas(),
