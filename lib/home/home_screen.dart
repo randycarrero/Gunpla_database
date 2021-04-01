@@ -103,31 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    MaterialButton(
-                      minWidth: 40,
-                      onPressed: () {
-                        setState(() {
-                          currentScreen = HomeScreen();
-                          currentTAb = 1;
-                        });
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.dashboard,
-                            color: currentTAb == 1 ? Colors.blue : Colors.grey,
-                          ),
-                          Text(
-                            'Mainscreen',
-                            style: TextStyle(
-                              color:
-                                  currentTAb == 1 ? Colors.blue : Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                    )
                   ],
                 ),
                 // Right Side Bar Section!
