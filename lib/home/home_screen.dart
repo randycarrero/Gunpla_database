@@ -2,9 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
 import 'package:gunpla_database/home/gunpla_list_tile.dart';
 import 'package:gunpla_database/gunpla_details/gunpla_details_screen.dart';
+import 'package:gunpla_database/pages/profile.dart';
+import 'package:gunpla_database/pages/settings.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentTAb = 0;
+  final List<Widget> screens = [HomeScreen(), Profile(), Setting()];
+
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = HomeScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +62,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: (){},
+        onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
