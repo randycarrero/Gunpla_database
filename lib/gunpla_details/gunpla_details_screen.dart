@@ -2,7 +2,6 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 
 class GunplaDetailsScreen extends StatelessWidget {
   const GunplaDetailsScreen({
