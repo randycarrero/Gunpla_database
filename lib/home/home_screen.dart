@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
 import 'package:gunpla_database/home/gunpla_list_tile.dart';
@@ -21,50 +23,172 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Gunpla Database'),
-      ),
-      body: FutureBuilder(
-        future: context.read<Backend>().getGunplas(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('An error occurred.'),
-            );
-          } else if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            final gunplas = snapshot.data;
+        appBar: AppBar(
+          title: const Text('Gunpla Database'),
+        ),
+        body: FutureBuilder(
+          future: context.read<Backend>().getGunplas(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text('An error occurred.'),
+              );
+            } else if (!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              final gunplas = snapshot.data;
 
-            return ListView(
-              children: [
-                for (final gunpla in gunplas) ...[
-                  GunplaListTile(
-                    gunpla: gunpla,
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return GunplaDetailsScreen(gunpla: gunpla);
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                  const Divider(height: 0.0),
-                ]
+              return ListView(
+                children: [
+                  for (final gunpla in gunplas) ...[
+                    GunplaListTile(
+                      gunpla: gunpla,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return GunplaDetailsScreen(gunpla: gunpla);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    const Divider(height: 0.0),
+                  ]
+                ],
+              );
+            }
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: Container(
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = HomeScreen();
+                          currentTAb = 0;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.dashboard,
+                            color: currentTAb == 0 ? Colors.blue : Colors.grey,
+                          ),
+                          Text(
+                            'Mainscreen',
+                            style: TextStyle(
+                              color:
+                                  currentTAb == 0 ? Colors.blue : Colors.grey,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = HomeScreen();
+                          currentTAb = 1;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.dashboard,
+                            color: currentTAb == 1 ? Colors.blue : Colors.grey,
+                          ),
+                          Text(
+                            'Mainscreen',
+                            style: TextStyle(
+                              color:
+                                  currentTAb == 1 ? Colors.blue : Colors.grey,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                // Right Side Bar Section!
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = Profile();
+                          currentTAb = 2;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.person,
+                            color: currentTAb == 2 ? Colors.blue : Colors.grey,
+                          ),
+                          Text(
+                            'Profile',
+                            style: TextStyle(
+                              color:
+                                  currentTAb == 2 ? Colors.blue : Colors.grey,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = Setting();
+                          currentTAb = 3;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.settings,
+                            color: currentTAb == 3 ? Colors.blue : Colors.grey,
+                          ),
+                          Text(
+                            'Settings',
+                            style: TextStyle(
+                              color:
+                                  currentTAb == 3 ? Colors.blue : Colors.grey,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
               ],
-            );
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+            ),
+          ),
+        ));
   }
 }
