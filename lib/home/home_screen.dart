@@ -1,3 +1,4 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
 import 'package:flutter/material.dart';
@@ -64,13 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          backgroundColor: Colors.black,
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           onPressed: () {},
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           notchMargin: 10,
+          color: Colors.black,
           child: Container(
             height: 60,
             child: Row(
@@ -92,13 +98,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             Icons.dashboard,
-                            color: currentTAb == 0 ? Colors.blue : Colors.grey,
+                            color: currentTAb == 0 ? Colors.blue : Colors.white,
                           ),
                           Text(
                             'Home',
                             style: TextStyle(
                               color:
-                                  currentTAb == 0 ? Colors.blue : Colors.grey,
+                                  currentTAb == 0 ? Colors.blue : Colors.white,
                             ),
                           )
                         ],
@@ -117,13 +123,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             Icons.tv,
-                            color: currentTAb == 1 ? Colors.blue : Colors.grey,
+                            color: currentTAb == 1 ? Colors.blue : Colors.white,
                           ),
                           Text(
                             'Series',
                             style: TextStyle(
                               color:
-                                  currentTAb == 1 ? Colors.blue : Colors.grey,
+                                  currentTAb == 1 ? Colors.blue : Colors.white,
                             ),
                           )
                         ],
@@ -147,14 +153,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.person,
-                            color: currentTAb == 2 ? Colors.blue : Colors.grey,
+                            Icons.account_circle,
+                            color: currentTAb == 2 ? Colors.blue : Colors.white,
                           ),
                           Text(
                             'Profile',
                             style: TextStyle(
                               color:
-                                  currentTAb == 2 ? Colors.blue : Colors.grey,
+                                  currentTAb == 2 ? Colors.blue : Colors.white,
                             ),
                           )
                         ],
@@ -173,13 +179,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             Icons.settings,
-                            color: currentTAb == 3 ? Colors.blue : Colors.grey,
+                            color: currentTAb == 3 ? Colors.blue : Colors.white,
                           ),
                           Text(
                             'Settings',
                             style: TextStyle(
                               color:
-                                  currentTAb == 3 ? Colors.blue : Colors.grey,
+                                  currentTAb == 3 ? Colors.blue : Colors.white,
                             ),
                           )
                         ],
