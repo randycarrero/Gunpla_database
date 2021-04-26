@@ -18,6 +18,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentTAb = 0;
   final List<Widget> screens = [HomeScreen(), Series(), Profile(), Setting()];
+  List gunplas = [];
+  List filteredgunplas = [];
+  bool isSearching = false;
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeScreen();
@@ -26,11 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gunpla Database'),
+        title: !isSearching
+            ? Text('Gunpla Database')
+            : TextField(
+                decoration: InputDecoration(hintText: "Search Gunpla Here"),
+              ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
             icon: Icon(Icons.search),
+            onPressed: () {
+              setState(() {
+                this.isSearching = !this.isSearching;
+              });
+            },
           ),
         ],
       ),
