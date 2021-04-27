@@ -5,29 +5,29 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Stream<User> get currentUserStream => FirebaseAuth.instance.userChanges();
-Future<void> signUp() async {
-  await FirebaseAuth.instance.signInAnonymously();
-}
-
-Stream<List<String>> get favoritedGunplas {
-  final userId = FirebaseAuth.instance.currentUser.uid;
-  return FirebaseFirestore.instance
-      .collection('users')
-      .doc(userId)
-      .snapshots()
-      .map((documentSnapshot) {
-    if (!documentSnapshot.exists) {
-      return [];
-    }
-    return documentSnapshot.data()['favorited_gunplas'] as List<String>;
-  });
-}
-
 class Backend {
   const Backend(this.hostUrl);
 
   final String hostUrl;
+
+  Stream<User> get currentUserStream => FirebaseAuth.instance.userChanges();
+  Future<void> signUp() async {
+    await FirebaseAuth.instance.signInAnonymously();
+  }
+
+  Stream<List<String>> get favoritedGunplas {
+    final userId = FirebaseAuth.instance.currentUser.uid;
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .snapshots()
+        .map((documentSnapshot) {
+      if (!documentSnapshot.exists) {
+        return [];
+      }
+      return documentSnapshot.data()['favorited_gunplas'] as List<String>;
+    });
+  }
 
   Future<List<Gunpla>> getGunplas() async {
     final url = '$hostUrl';
