@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
 
 class GunplaDetailsScreen extends StatelessWidget {
+  final Gunpla gunpla;
+
   const GunplaDetailsScreen({
     Key key,
     @required this.gunpla,
   })  : assert(gunpla != null),
         super(key: key);
-
-  final Gunpla gunpla;
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +68,12 @@ class GunplaDetailsScreen extends StatelessWidget {
 }
 
 class _ImageHeader extends StatelessWidget {
+  final Gunpla gunpla;
+
   const _ImageHeader({
     Key key,
     @required this.gunpla,
   }) : super(key: key);
-
-  final Gunpla gunpla;
 
   @override
   Widget build(BuildContext context) {

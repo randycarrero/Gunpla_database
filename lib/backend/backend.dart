@@ -1,19 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart' as http;
+
+List<Gunpla> gunplaFromJson(String str) =>
+    List<Gunpla>.from(json.decode(str).map((x) => Gunpla.fromJson(x)));
+
+String gunplaToJson(List<Gunpla> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Backend {
-  const Backend(this.hostUrl);
-
   final String hostUrl;
 
+  const Backend(this.hostUrl);
+
   Stream<User> get currentUserStream => FirebaseAuth.instance.userChanges();
-  Future<void> signUp() async {
-    await FirebaseAuth.instance.signInAnonymously();
-  }
 
   Stream<List<String>> get favoritedGunplas {
     final userId = FirebaseAuth.instance.currentUser.uid;
@@ -50,15 +53,25 @@ class Backend {
 
     return gunplas;
   }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  Future<void> signUp() async {
+    await FirebaseAuth.instance.signInAnonymously();
+  }
 }
 
-List<Gunpla> gunplaFromJson(String str) =>
-    List<Gunpla>.from(json.decode(str).map((x) => Gunpla.fromJson(x)));
-
-String gunplaToJson(List<Gunpla> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class Gunpla {
+  int id;
+
+  String image;
+  String name;
+  String series;
+  String grade;
+  String scale;
+  String exclusive;
   Gunpla({
     this.id,
     this.image,
@@ -68,14 +81,6 @@ class Gunpla {
     this.scale,
     this.exclusive,
   });
-
-  int id;
-  String image;
-  String name;
-  String series;
-  String grade;
-  String scale;
-  String exclusive;
 
   factory Gunpla.fromJson(Map<String, dynamic> json) => Gunpla(
       id: json["id"],

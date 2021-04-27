@@ -3,8 +3,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
-import 'package:gunpla_database/home/gunpla_list_tile.dart';
 import 'package:gunpla_database/gunpla_details/gunpla_details_screen.dart';
+import 'package:gunpla_database/home/gunpla_list_tile.dart';
 import 'package:gunpla_database/pages/profile.dart';
 import 'package:gunpla_database/pages/series.dart';
 import 'package:gunpla_database/pages/settings.dart';
@@ -28,8 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: !isSearching ? Text('Gunpla Database') : TextField()),
+      appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              context.read<Backend>().signOut();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+          title: !isSearching ? Text('Gunpla Database') : TextField()),
       body: FutureBuilder(
         future: context.read<Backend>().getGunplas(),
         builder: (context, snapshot) {

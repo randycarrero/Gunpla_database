@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gunpla_database/backend/backend.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -25,6 +27,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Text(
               'Gunpla Database',
               style: textTheme.headline4,
+            ),
+            const SizedBox(height: 16.0),
+            ElevatedButton.icon(
+              onPressed: isLoading
+                  ? null
+                  : () {
+                      final backend = context.read<Backend>();
+                      backend.signUp();
+                      setState(() {
+                        isLoading = true;
+                      });
+                    },
+              icon: const Text(''),
+              label: isLoading
+                  ? const CircularProgressIndicator()
+                  : const Text('Sign Up'),
             ),
           ],
         ),

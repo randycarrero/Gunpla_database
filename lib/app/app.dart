@@ -1,17 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:gunpla_database/app/theme.dart';
 import 'package:gunpla_database/backend/backend.dart';
 import 'package:gunpla_database/home/home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gunpla_database/sign_up/sign_up_screen.dart';
+import 'package:provider/provider.dart';
 
 class GunplaDatabaseApp extends StatelessWidget {
+  final Backend backend;
+
   const GunplaDatabaseApp({
     @required this.backend,
   }) : assert(backend != null);
-
-  final Backend backend;
 
   @override
   Widget build(BuildContext context) {
