@@ -32,17 +32,33 @@ class _HomeScreenState extends State<HomeScreen> {
         title: !isSearching
             ? Text('Gunpla Database')
             : TextField(
-                decoration: InputDecoration(hintText: "Search Gunpla Here"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                    hintText: "Search Gunpla Here",
+                    hintStyle: TextStyle(color: Colors.white)),
               ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              setState(() {
-                this.isSearching = !this.isSearching;
-              });
-            },
-          ),
+          isSearching
+              ? IconButton(
+                  icon: Icon(Icons.cancel),
+                  onPressed: () {
+                    setState(() {
+                      this.isSearching = false;
+                    });
+                  },
+                )
+              : IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    setState(() {
+                      this.isSearching = true;
+                    });
+                  },
+                ),
         ],
       ),
       body: FutureBuilder(
