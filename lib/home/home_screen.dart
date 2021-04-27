@@ -15,6 +15,10 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+void _filterGunplas(value) {
+  print(value);
+}
+
 class _HomeScreenState extends State<HomeScreen> {
   int currentTAb = 0;
   final List<Widget> screens = [HomeScreen(), Series(), Profile(), Setting()];
@@ -32,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: !isSearching
             ? Text('Gunpla Database')
             : TextField(
+                onChanged: (value) {
+                  _filterGunplas(value);
+                },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     icon: Icon(
