@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/app/app.dart';
 import 'package:gunpla_database/backend/backend.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  final backend = Backend('https://raw.githubusercontent.com/randycarrero/gunplajson/main/model.json');
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final backend = Backend('XXXXX://XXX.XXXXXXXXXXXXXXXXX/XXXXX.XXXX');
 
   runApp(
     GunplaDatabaseApp(

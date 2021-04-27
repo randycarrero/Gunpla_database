@@ -33,7 +33,9 @@ dependencies:
   provider: ^4.3.3
   ant_icons: ^1.0.0
   url_launcher: ^5.7.10
-
+  firebase_core: 0.7.0
+  firebase_auth: 0.20.1
+  cloud_firestore: 0.16.0+1
 
 
 dev_dependencies:

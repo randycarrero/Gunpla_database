@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:gunpla_database/app/theme.dart';
 import 'package:gunpla_database/backend/backend.dart';
 import 'package:gunpla_database/home/home_screen.dart';
+import 'package:gunpla_database/sign_up/sign_up_screen.dart';
 
 class GunplaDatabaseApp extends StatelessWidget {
   const GunplaDatabaseApp({
