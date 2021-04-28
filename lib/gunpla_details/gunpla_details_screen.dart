@@ -32,7 +32,12 @@ class GunplaDetailsScreen extends StatelessWidget {
                 final favoritedGunplas = snapshot.data;
                 final isGunplasFavorited = favoritedGunplas.contains(gunpla.id);
                 return IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<Backend>().setFavoritedGunpla(
+                          id: '${gunpla.id}',
+                          favorited: !isGunplasFavorited,
+                        );
+                  },
                   icon: isGunplasFavorited
                       ? const Icon(
                           AntIcons.heart,
@@ -62,19 +67,19 @@ class GunplaDetailsScreen extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.column_width),
-            title: Text('${gunpla.scale}'),
+            title: Text(gunpla.scale.toString()),
             subtitle: const Text('Available Scale'),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(AntIcons.colum_height),
-            title: Text('${gunpla.grade}'),
+            title: Text(gunpla.grade.toString()),
             subtitle: const Text('Available Grade'),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(CupertinoIcons.star_fill),
-            title: Text('${gunpla.exclusive}'),
+            title: Text(gunpla.exclusive.toString()),
             subtitle: const Text('Exclusive'),
           ),
           const Divider(),
@@ -103,7 +108,7 @@ class _ImageHeader extends StatelessWidget {
     return SizedBox(
       height: 250,
       child: Hero(
-        tag: 'hero-${gunpla.id}-image',
+        tag: 'hero-${gunpla.id.toString()}-image',
         child: Image.network(
           gunpla.image,
           fit: BoxFit.cover,

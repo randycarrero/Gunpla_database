@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:meta/meta.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
@@ -28,8 +29,26 @@ class Backend {
       if (!documentSnapshot.exists) {
         return [];
       }
-      return documentSnapshot.data()['favorited_gunplas'] as List<String>;
+      return List<String>.from(documentSnapshot.data()['favorited_gunplas']);
     });
+  }
+
+  Future<void> setFavoritedGunpla({
+    @required String id,
+    @required bool favorited,
+  }) async {
+    final currentFavoritedGunplas = await favoritedGunplas.first;
+
+    if (favorited && !currentFavoritedGunplas.contains(id)) {
+      currentFavoritedGunplas.add(id);
+    } else if (!favorited && currentFavoritedGunplas.contains(id)) {
+      currentFavoritedGunplas.remove(id);
+    }
+    final userId = FirebaseAuth.instance.currentUser.uid;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .set({'favorited_gunplas': currentFavoritedGunplas});
   }
 
   Future<List<Gunpla>> getGunplas() async {

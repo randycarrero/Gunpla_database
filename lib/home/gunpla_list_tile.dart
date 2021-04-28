@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
+import 'package:provider/provider.dart';
+import 'package:ant_icons/ant_icons.dart';
 
 class GunplaListTile extends StatelessWidget {
   final Gunpla gunpla;
