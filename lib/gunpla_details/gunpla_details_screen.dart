@@ -2,6 +2,7 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/backend.dart';
+import 'package:provider/provider.dart';
 
 class GunplaDetailsScreen extends StatelessWidget {
   final Gunpla gunpla;
@@ -19,6 +20,28 @@ class GunplaDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(gunpla.name),
+        actions: [
+          StreamBuilder<List<String>>(
+              stream: context.read<Backend>().favoritedGunplas,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                final favoritedGunplas = snapshot.data;
+                final isGunplasFavorited = favoritedGunplas.contains(gunpla.id);
+                return IconButton(
+                  onPressed: () {},
+                  icon: isGunplasFavorited
+                      ? const Icon(
+                          AntIcons.heart,
+                          color: Colors.redAccent,
+                        )
+                      : const Icon(AntIcons.heart_outline),
+                );
+              }),
+        ],
       ),
       body: ListView(
         children: [
