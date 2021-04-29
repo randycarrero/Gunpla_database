@@ -30,7 +30,8 @@ class GunplaDetailsScreen extends StatelessWidget {
                   );
                 }
                 final favoritedGunplas = snapshot.data;
-                final isGunplasFavorited = favoritedGunplas.contains(gunpla.id);
+                final isGunplasFavorited =
+                    favoritedGunplas.contains('${gunpla.id}');
                 return IconButton(
                   onPressed: () {
                     context.read<Backend>().setFavoritedGunpla(
