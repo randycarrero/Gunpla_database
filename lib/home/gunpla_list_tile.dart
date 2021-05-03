@@ -19,8 +19,7 @@ class GunplaListTile extends StatelessWidget {
     return StreamBuilder<List<String>>(
         stream: context.read<Backend>().favoritedGunplas,
         builder: (context, snapshot) {
-          final hasFavorited =
-              snapshot.hasData && snapshot.data.contains('${gunpla.id}');
+          final hasFavorited = snapshot.hasData && snapshot.data.contains('${gunpla.id}');
           return ListTile(
             isThreeLine: true,
             onTap: onTap,
@@ -43,11 +42,11 @@ class GunplaListTile extends StatelessWidget {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Hero(
-                    tag: 'hero-${gunpla.id}-name',
-                    child: ClipRect(
-                      child: Text(gunpla.name),
-                    )),
+                Expanded(
+                    child: Hero(
+                  tag: 'hero-${gunpla.id}-name',
+                  child: Text(gunpla.name),
+                )),
                 if (hasFavorited) ...const [
                   SizedBox(width: 4.0),
                   Icon(
