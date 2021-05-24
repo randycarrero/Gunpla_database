@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -15,7 +17,6 @@ class HomeScreen extends StatelessWidget {
           ),
           title: const Text('Gunpla Database')),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -31,8 +32,22 @@ class HomeScreen extends StatelessWidget {
                         .map((e) => Column(
                               children: [
                                 ListTile(
-                                  title: Text(e['name']),
-                                ),
+                                    title: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Expanded(
+                                            child: Text(e['name']),
+                                          )
+                                        ]),
+                                    subtitle: Row(
+                                      children: [
+                                        Text(
+                                          e['series'],
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        )
+                                      ],
+                                    )),
                                 Divider(
                                   color: Colors.black.withOpacity(0.6),
                                   thickness: 2,
