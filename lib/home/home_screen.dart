@@ -15,8 +15,6 @@ class HomeScreen extends StatelessWidget {
           ),
           title: const Text('Gunpla Database')),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
             Expanded(
@@ -30,6 +28,11 @@ class HomeScreen extends StatelessWidget {
                         .map((e) => Column(
                               children: [
                                 ListTile(
+                                    isThreeLine: true,
+                                    leading: GestureDetector(
+                                      //  onTap: () {},
+                                      child: FlutterLogo(),
+                                    ),
                                     title: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
