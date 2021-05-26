@@ -29,9 +29,23 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 ListTile(
                                     isThreeLine: true,
-                                    leading: GestureDetector(
-                                      //  onTap: () {},
-                                      child: FlutterLogo(),
+                                    leading:
+                                        // CircleAvatar(
+                                        //   backgroundImage:
+                                        //       NetworkImage(userAvatarUrl),
+                                        // ),
+                                        //   CircleAvatar(
+                                        // backgroundColor: Colors.brown.shade800,
+                                        // child: const Text('AH'),
+                                        Material(
+                                      clipBehavior: Clip.antiAlias,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: AspectRatio(
+                                          aspectRatio: 3 / 2,
+                                          child: Image.network(
+                                              snapshot.data.documents[index]
+                                                  .data["url"],
+                                              fit: BoxFit.cover)),
                                     ),
                                     title: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -49,10 +63,7 @@ class HomeScreen extends StatelessWidget {
                                         )
                                       ],
                                     )),
-                                Divider(
-                                  color: Colors.black.withOpacity(0.6),
-                                  thickness: 2,
-                                )
+                                const Divider(height: 0.0),
                               ],
                             ))
                         .toList(),
