@@ -10,10 +10,10 @@ class LeadingImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(200),
+        borderRadius: BorderRadius.circular(8.0),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(400),
+      child: AspectRatio(
+        aspectRatio: 3 / 2,
         child: Image.network(url),
       ),
     );
@@ -54,6 +54,7 @@ class HomeScreen extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    trailing: const Icon(Icons.chevron_right_sharp),
                   );
                 });
           }
