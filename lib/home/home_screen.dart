@@ -1,62 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:gunpla_database/backend/backend.dart';
-import 'package:gunpla_database/gunpla_details/gunpla_details_screen.dart';
-import 'package:gunpla_database/home/gunpla_list_tile.dart';
-import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class HomeScreen extends StatefulWidget {
+class LeadingImage extends StatelessWidget {
+  final String url;
+
+  const LeadingImage(this.url);
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: AspectRatio(
+        aspectRatio: 3 / 2,
+        child: Image.network(url),
+      ),
+    );
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('gunpla');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-            onPressed: () {
-              context.read<Backend>().signOut();
-            },
+            onPressed: () {},
             icon: const Icon(Icons.logout),
           ),
           title: const Text('Gunpla Database')),
-      body: FutureBuilder(
-        future: context.read<Backend>().getGunplas(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('An error occurred.'),
-            );
-          } else if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            final gunplas = snapshot.data;
-
-            return ListView(
-              children: [
-                for (final gunpla in gunplas) ...[
-                  GunplaListTile(
-                    gunpla: gunpla,
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return GunplaDetailsScreen(gunpla: gunpla);
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                  const Divider(height: 0.0),
-                ]
-              ],
-            );
+      body: SingleChildScrollView(
+          child: StreamBuilder(
+        stream: collectionReference.snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            var docs = snapshot.data.docs;
+            return ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                itemCount: docs.length,
+                itemBuilder: (_, index) {
+                  var document = docs[index];
+                  return ListTile(
+                    isThreeLine: true,
+                    leading: LeadingImage(document['image']),
+                    title: Text(document['name']),
+                    subtitle: Text(
+                      document['series'],
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    trailing: const Icon(Icons.chevron_right_sharp),
+                  );
+                });
           }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         },
-      ),
+      )),
     );
   }
 }
