@@ -33,7 +33,7 @@ return Scaffold(
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-      image: AssetImage("lib\assets\gunplabg.jpg"),
+      image: AssetImage("assets/images/gunplabg.jpg"),
       fit: BoxFit.cover,
     ))));
   }
