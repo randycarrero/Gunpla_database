@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gunpla_database/authscreen/sign_up_screen.dart';
 import 'package:gunpla_database/backend/auth_provider.dart';
 import 'package:gunpla_database/home/home_screen.dart';
-import 'login_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  SignUpScreen({Key key}) : super(key: key);
+import 'reset_screen.dart';
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
 
@@ -20,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Register"),
+          title: Text("Login"),
         ),
         body: isLoading == false
             ? Padding(
@@ -45,11 +47,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             isLoading = true;
                           });
                           AuthClass()
-                              .createAccount(
+                              .signIN(
                                   email: _email.text.trim(),
                                   password: _password.text.trim())
                               .then((value) {
-                            if (value == "Account created") {
+                            if (value == "Welcome") {
                               setState(() {
                                 isLoading = false;
                               });
@@ -67,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           });
                         },
-                        child: Text("Create account")),
+                        child: Text("Log in ")),
                     SizedBox(
                       height: 20,
                     ),
@@ -76,13 +78,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
+                                builder: (context) => SignUpScreen()));
                       },
-                      child: Text("Already have an account? Login"),
+                      child: Text("Don't have an account? Register"),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ResetScreen()));
+                      },
+                      child: Text("Forgot Password? reset"),
+                    )
                   ],
                 ),
               )

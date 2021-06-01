@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gunpla_database/AuthScreen/sign_up_screen.dart';
+import 'package:gunpla_database/authscreen/login_screen.dart';
+import 'package:gunpla_database/authscreen/sign_up_screen.dart';
 import 'package:gunpla_database/home/home_screen.dart';
 
 class Splash extends StatefulWidget {
@@ -18,7 +20,7 @@ class _SplashState extends State<Splash> {
       if (auth.currentUser == null) {
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => SignUpScreen()),
+            MaterialPageRoute(builder: (context) => LoginScreen()),
             (route) => false);
       } else {
         Navigator.pushAndRemoveUntil(

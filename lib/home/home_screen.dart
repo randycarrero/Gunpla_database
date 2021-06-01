@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gunpla_database/authscreen/login_screen.dart';
+import 'package:gunpla_database/backend/auth_provider.dart';
 
 class LeadingImage extends StatelessWidget {
   final String url;
@@ -29,7 +31,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthClass().signOut();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (route) => false);
+            },
             icon: const Icon(Icons.logout),
           ),
           title: const Text('Gunpla Database')),

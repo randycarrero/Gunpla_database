@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gunpla_database/backend/auth_provider.dart';
-import 'package:gunpla_database/home/home_screen.dart';
 import 'login_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  SignUpScreen({Key key}) : super(key: key);
+class ResetScreen extends StatefulWidget {
+  ResetScreen({Key key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _ResetScreenState createState() => _ResetScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _ResetScreenState extends State<ResetScreen> {
   TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
 
   bool isLoading = false;
 
@@ -20,7 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Register"),
+          title: Text("Reset"),
         ),
         body: isLoading == false
             ? Padding(
@@ -34,10 +32,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(
                       height: 30,
                     ),
-                    TextFormField(
-                      controller: _password,
-                      decoration: InputDecoration(hintText: "Password"),
-                    ),
                     FlatButton(
                         color: Colors.blue,
                         onPressed: () {
@@ -45,18 +39,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             isLoading = true;
                           });
                           AuthClass()
-                              .createAccount(
-                                  email: _email.text.trim(),
-                                  password: _password.text.trim())
+                              .resetPassword(
+                            email: _email.text.trim(),
+                          )
                               .then((value) {
-                            if (value == "Account created") {
+                            if (value == "Email sent") {
                               setState(() {
                                 isLoading = false;
                               });
                               Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeScreen()),
+                                      builder: (context) => LoginScreen()),
                                   (route) => false);
                             } else {
                               setState(() {
@@ -67,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           });
                         },
-                        child: Text("Create account")),
+                        child: Text("Reset account")),
                     SizedBox(
                       height: 20,
                     ),
