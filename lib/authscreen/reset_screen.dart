@@ -16,66 +16,88 @@ class _ResetScreenState extends State<ResetScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style = ElevatedButton.styleFrom(
+      textStyle: const TextStyle(
+        fontSize: 20,
+      ),
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50.0),
+      elevation: 10,
+    );
     return Scaffold(
         appBar: AppBar(
           title: Text("Reset"),
         ),
         body: isLoading == false
             ? Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(48.0),
                 child: Column(
                   children: [
                     TextFormField(
                       controller: _email,
-                      decoration: InputDecoration(hintText: "Email"),
+                      keyboardType: TextInputType.emailAddress,
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.mail_outline),
+                        hintText: "Email",
+                        contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
-                    FlatButton(
-                        color: Colors.blue,
-                        onPressed: () {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          AuthClass()
-                              .resetPassword(
-                            email: _email.text.trim(),
-                          )
-                              .then((value) {
-                            if (value == "Email sent") {
-                              setState(() {
-                                isLoading = false;
-                              });
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginScreen()),
-                                  (route) => false);
-                            } else {
-                              setState(() {
-                                isLoading = false;
-                              });
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(content: Text(value)));
-                            }
-                          });
-                        },
-                        child: Text("Reset account")),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        AuthClass()
+                            .resetPassword(
+                          email: _email.text.trim(),
+                        )
+                            .then((value) {
+                          if (value == "Email sent") {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()),
+                                (route) => false);
+                          } else {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(value)));
+                          }
+                        });
+                      },
+                      icon: Icon(Icons.account_circle_outlined),
+                      label: Text("Reset account"),
+                      style: style,
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
-                      },
-                      child: Text("Already have an account? Login"),
-                    ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                        },
+                        child: Container(
+                          child: Text("Already have an account? Login"),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1, color: Colors.black))),
+                        )),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                   ],
                 ),

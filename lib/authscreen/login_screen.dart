@@ -20,80 +20,117 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style = ElevatedButton.styleFrom(
+      textStyle: const TextStyle(
+        fontSize: 20,
+      ),
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50.0),
+      elevation: 10,
+    );
     return Scaffold(
         appBar: AppBar(
           title: Text("Login"),
         ),
         body: isLoading == false
             ? Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(48.0),
                 child: Column(
                   children: [
                     TextFormField(
                       controller: _email,
-                      decoration: InputDecoration(hintText: "Email"),
+                      keyboardType: TextInputType.emailAddress,
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.mail_outline),
+                        hintText: "Email",
+                        contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     TextFormField(
                       controller: _password,
-                      decoration: InputDecoration(hintText: "Password"),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock_outlined),
+                        hintText: "Password",
+                        contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                        border: OutlineInputBorder(),
+                      ),
                     ),
-                    FlatButton(
-                        color: Colors.blue,
-                        onPressed: () {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          AuthClass()
-                              .signIN(
-                                  email: _email.text.trim(),
-                                  password: _password.text.trim())
-                              .then((value) {
-                            if (value == "Welcome") {
-                              setState(() {
-                                isLoading = false;
-                              });
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomeScreen()),
-                                  (route) => false);
-                            } else {
-                              setState(() {
-                                isLoading = false;
-                              });
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(content: Text(value)));
-                            }
-                          });
-                        },
-                        child: Text("Log in ")),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        AuthClass()
+                            .signIN(
+                                email: _email.text.trim(),
+                                password: _password.text.trim())
+                            .then((value) {
+                          if (value == "Welcome") {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                                (route) => false);
+                          } else {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(value)));
+                          }
+                        });
+                      },
+                      icon: Icon(Icons.login_outlined),
+                      label: Text("Log in "),
+                      style: style,
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpScreen()));
-                      },
-                      child: Text("Don't have an account? Register"),
-                    ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpScreen()));
+                        },
+                        child: Container(
+                          child: Text("Create New Account"),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1, color: Colors.black))),
+                        )),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ResetScreen()));
-                      },
-                      child: Text("Forgot Password? reset"),
-                    )
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResetScreen()));
+                        },
+                        child: Container(
+                          child: Text("Forgot Password?"),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1, color: Colors.black))),
+                        ))
                   ],
                 ),
               )
