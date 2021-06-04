@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gunpla_database/gunpla_details/gunpla_details_screen.dart';
 
 class LeadingImage extends StatelessWidget {
   final String url;
@@ -49,6 +50,12 @@ class GunplaListTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   trailing: const Icon(Icons.chevron_right_sharp),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GunplaDetailsScreen()));
+                  },
                 );
               });
         }
