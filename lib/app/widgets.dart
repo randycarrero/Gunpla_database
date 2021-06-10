@@ -328,6 +328,65 @@ class _LoginBtnState extends State<LoginBtn> {
     );
   }
 }
+
+class BuildRegisterBtn extends StatefulWidget {
+  BuildRegisterBtn({Key key}) : super(key: key);
+
+  @override
+  _BuildRegisterBtnState createState() => _BuildRegisterBtnState();
+}
+
+class _BuildRegisterBtnState extends State<BuildRegisterBtn> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 25.0),
+      width: double.infinity,
+      child: ElevatedButton(
+        style: raisedButtonStyle,
+        onPressed: () {
+          setState(() {
+            isLoading = true;
+          });
+          AuthClass()
+              .createAccount(
+                  email: _email.text.trim(), password: _password.text.trim())
+              .then((value) {
+            if (value == "Account created") {
+              setState(() {
+                isLoading = false;
+              });
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (route) => false);
+            } else {
+              setState(() {
+                isLoading = false;
+              });
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(value)));
+            }
+          });
+        },
+        child: Text(
+          'LOGIN',
+          style: TextStyle(
+            color: Colors.white,
+            letterSpacing: 1.5,
+            fontSize: 18.0,
+            fontFamily: 'OpenSans',
+          ),
+        ),
+      ),
+    );
+  }
+}
 // Widget _buildSignInWithText() {
 //   return Column(
 //     children: <Widget>[
