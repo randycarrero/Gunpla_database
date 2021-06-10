@@ -375,7 +375,7 @@ class _BuildRegisterBtnState extends State<BuildRegisterBtn> {
           });
         },
         child: Text(
-          'LOGIN',
+          'REGISTER',
           style: TextStyle(
             color: Colors.white,
             letterSpacing: 1.5,
