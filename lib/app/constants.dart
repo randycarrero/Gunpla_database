@@ -22,3 +22,13 @@ final kBoxDecorationStyle = BoxDecoration(
     ),
   ],
 );
+
+final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+  primary: Color(0xFF9E9E9E),
+  minimumSize: Size(88, 36),
+  elevation: 5.0,
+  padding: EdgeInsets.all(15.0),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+  ),
+);
