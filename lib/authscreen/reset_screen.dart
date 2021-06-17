@@ -54,6 +54,16 @@ class _ResetScreenState extends State<ResetScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
+                                  'Reset Password',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 30.0),
+                                Text(
                                   'Email',
                                   style: kLabelStyle,
                                 ),
