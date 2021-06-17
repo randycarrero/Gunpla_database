@@ -23,6 +23,12 @@ class HomeScreen extends StatelessWidget {
               icon: const Icon(Icons.logout),
             ),
             title: const Text('Gunpla Database')),
-        body: GunplaListTile());
+        body: GunplaListTile(),      
+        floatingActionButton: FloatingActionButton(
+        backgroundColor:Colors.grey,
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }
