@@ -11,24 +11,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                AuthClass().signOut();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                    (route) => false);
-              },
-              icon: const Icon(Icons.logout),
-            ),
-            title: const Text('Gunpla Database')),
-        body: GunplaListTile(),      
-        floatingActionButton: FloatingActionButton(
-        backgroundColor:Colors.grey,
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
+      appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              AuthClass().signOut();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (route) => false);
+            },
+            icon: const Icon(Icons.logout),
+          ),
+          title: const Text('Gunpla Database')),
+      body: GunplaListTile(),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.black,
+          onPressed: () {},
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          )),
     );
   }
 }
