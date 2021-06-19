@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gunpla_database/authscreen/login_screen.dart';
 import 'package:gunpla_database/backend/auth_provider.dart';
 import 'package:gunpla_database/home/gunpla_list_page.dart';
+import 'package:gunpla_database/pages/add_gunpla_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final CollectionReference collectionReference =
@@ -26,7 +27,10 @@ class HomeScreen extends StatelessWidget {
       body: GunplaListTile(),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddGunplaScreen()));
+          },
           child: Icon(
             Icons.add,
             color: Colors.white,

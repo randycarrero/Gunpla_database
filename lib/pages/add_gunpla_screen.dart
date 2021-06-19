@@ -99,7 +99,9 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 style: raisedButtonStyle,
-                onPressed: () {},
+                onPressed: () {
+                  addGunpla();
+                },
                 child: Text(
                   'Add Gunpla to Database',
                   style: TextStyle(
