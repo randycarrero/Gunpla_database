@@ -195,7 +195,7 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 Container(
                   width: double.infinity,
                   child: ElevatedButton(
-                    style: raisedButtonStyle,
+                    style: raisedButtonStyle2,
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         addGunpla();
