@@ -32,3 +32,13 @@ final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
     borderRadius: BorderRadius.all(Radius.circular(30.0)),
   ),
 );
+
+final ButtonStyle raisedButtonStyle2 = ElevatedButton.styleFrom(
+  primary: Colors.black,
+  minimumSize: Size(88, 36),
+  elevation: 5.0,
+  padding: EdgeInsets.all(15.0),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+  ),
+);
