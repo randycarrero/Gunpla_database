@@ -45,10 +45,12 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        backgroundColor: Colors.grey.shade900,
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Form(
@@ -57,12 +59,12 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
               children: [
                 Text(
                   "ADD GUNPLA",
-                  style: TextStyle(color: Colors.white, fontSize: 28),
+                  style: TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   "All field are required",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
+                  style: TextStyle(fontSize: 14),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -70,14 +72,12 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: kBoxDecorationStyle,
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: "Name",
-                        labelStyle: TextStyle(color: Colors.white),
-                        border: InputBorder.none),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      labelText: "Name",
+                      border: OutlineInputBorder(),
+                    ),
                     controller: nameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -92,14 +92,12 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: kBoxDecorationStyle,
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: "Series",
-                        labelStyle: TextStyle(color: Colors.white),
-                        border: InputBorder.none),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      labelText: "Series",
+                      border: OutlineInputBorder(),
+                    ),
                     controller: seriesController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -114,14 +112,13 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: kBoxDecorationStyle,
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: "Grade",
-                        labelStyle: TextStyle(color: Colors.white),
-                        border: InputBorder.none),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      labelText: "Grade",
+                      helperText: "Add coma after every grade",
+                      border: OutlineInputBorder(),
+                    ),
                     controller: gradeController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -136,14 +133,13 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: kBoxDecorationStyle,
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: "Scale",
-                        labelStyle: TextStyle(color: Colors.white),
-                        border: InputBorder.none),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      labelText: "Scale",
+                      helperText: "Add coma after every scale",
+                      border: OutlineInputBorder(),
+                    ),
                     controller: scaleController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -158,14 +154,12 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: kBoxDecorationStyle,
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: "Exclusive",
-                        labelStyle: TextStyle(color: Colors.white),
-                        border: InputBorder.none),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      labelText: "Exclusive",
+                      border: OutlineInputBorder(),
+                    ),
                     controller: exclusiveController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -180,14 +174,12 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: kBoxDecorationStyle,
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: "Image Url",
-                        labelStyle: TextStyle(color: Colors.white),
-                        border: InputBorder.none),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      labelText: "Image Url",
+                      border: OutlineInputBorder(),
+                    ),
                     controller: imageUrlController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -218,10 +210,8 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                     child: Text(
                       'Add Gunpla to Database',
                       style: TextStyle(
-                        color: Colors.white,
                         letterSpacing: 1.5,
-                        fontSize: 12.0,
-                        fontFamily: 'OpenSans',
+                        fontSize: 16.0,
                       ),
                     ),
                   ),
