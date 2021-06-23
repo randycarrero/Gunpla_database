@@ -34,16 +34,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // leading: IconButton(
-          //   onPressed: () {
-          //     AuthClass().signOut();
-          //     Navigator.pushAndRemoveUntil(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => LoginScreen()),
-          //         (route) => false);
-          //   },
-          //   icon: const Icon(Icons.logout),
-          // ),
           title: const Text('Gunpla Database'),
                 actions: [
             // IconButton(
