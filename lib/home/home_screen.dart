@@ -44,12 +44,12 @@ class HomeScreen extends StatelessWidget {
           //   },
           //   icon: const Icon(Icons.logout),
           // ),
-          title: const Text('Gunpla Database')
+          title: const Text('Gunpla Database'),
                 actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.search),
-            ),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: Icon(Icons.search),
+            // ),
             PopupMenuButton<MenuItem>(
               onSelected: (item) => onSelected(context, item),
               itemBuilder: (context) => [
