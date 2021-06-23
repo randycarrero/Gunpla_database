@@ -42,3 +42,13 @@ final ButtonStyle raisedButtonStyle2 = ElevatedButton.styleFrom(
     borderRadius: BorderRadius.all(Radius.circular(30.0)),
   ),
 );
+
+class MenuItem {
+  final String text;
+  final IconData icon;
+
+  const MenuItem({
+    this.text,
+    this.icon,
+  });
+}
