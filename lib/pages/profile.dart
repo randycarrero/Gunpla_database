@@ -12,7 +12,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Profile')),
-      body: Center(child: Text('Email $email', style: TextStyle(fontSize: 40))),
+      body: Center(child: Text('Email $email', style: TextStyle(fontSize: 20))),
     );
   }
 }

@@ -12,14 +12,13 @@ import 'package:gunpla_database/data/menu_items.dart';
 class HomeScreen extends StatelessWidget {
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('gunpla');
-  
-    PopupMenuItem<MenuItem> buildItem(MenuItem item) => PopupMenuItem<MenuItem>(
+
+  PopupMenuItem<MenuItem> buildItem(MenuItem item) => PopupMenuItem<MenuItem>(
         value: item,
         child: Row(
           children: [
             Icon(
               item.icon,
-              color: Colors.black,
               size: 20,
             ),
             const SizedBox(
@@ -33,37 +32,34 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Gunpla Database'),
-                actions: [
-            // IconButton(
-            //   onPressed: () {},
-            //   icon: Icon(Icons.search),
-            // ),
-            PopupMenuButton<MenuItem>(
-              onSelected: (item) => onSelected(context, item),
-              itemBuilder: (context) => [
-                ...MenuItems.itemsFirst.map(buildItem).toList(),
-                PopupMenuDivider(),
-                ...MenuItems.itemsSecond.map(buildItem).toList(),
-              ],
-            ),
-          ]
-      ),
+      appBar: AppBar(title: const Text('Gunpla Database'), actions: [
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.search),
+        // ),
+        PopupMenuButton<MenuItem>(
+          onSelected: (item) => onSelected(context, item),
+          itemBuilder: (context) => [
+            ...MenuItems.itemsFirst.map(buildItem).toList(),
+            PopupMenuDivider(),
+            ...MenuItems.itemsSecond.map(buildItem).toList(),
+          ],
+        ),
+      ]),
       body: GunplaListTile(),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.amber[700],
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => AddGunplaScreen()));
           },
           child: Icon(
             Icons.add,
-            color: Colors.white,
           )),
     );
   }
-    void onSelected(BuildContext context, MenuItem item) {
+
+  void onSelected(BuildContext context, MenuItem item) {
     switch (item) {
       case MenuItems.itemProfile:
         Navigator.of(context).push(

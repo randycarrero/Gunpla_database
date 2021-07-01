@@ -45,9 +45,6 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -156,8 +153,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Exclusive",
+                      labelStyle: TextStyle(color: Colors.amber),
                       border: OutlineInputBorder(),
                     ),
                     controller: exclusiveController,
@@ -210,6 +210,7 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                     child: Text(
                       'Add Gunpla to Database',
                       style: TextStyle(
+                        color: Colors.black,
                         letterSpacing: 1.5,
                         fontSize: 16.0,
                       ),

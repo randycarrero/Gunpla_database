@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gunpla_database/app/theme.dart';
-// import 'package:gunpla_database/home/home_screen.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gunpla_database/pages/splash.dart';
 
@@ -10,8 +7,7 @@ class GunplaDatabaseApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
+      theme: ThemeData.dark(),
       home: Home(),
     );
   }
