@@ -71,8 +71,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Name",
+                      labelStyle: TextStyle(color: Colors.amber),
                       border: OutlineInputBorder(),
                     ),
                     controller: nameController,
@@ -91,8 +94,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Series",
+                      labelStyle: TextStyle(color: Colors.amber),
                       border: OutlineInputBorder(),
                     ),
                     controller: seriesController,
@@ -111,8 +117,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Grade",
+                      labelStyle: TextStyle(color: Colors.amber),
                       helperText: "Add coma after every grade",
                       border: OutlineInputBorder(),
                     ),
@@ -132,8 +141,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Scale",
+                      labelStyle: TextStyle(color: Colors.amber),
                       helperText: "Add coma after every scale",
                       border: OutlineInputBorder(),
                     ),
@@ -176,8 +188,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Image Url",
+                      labelStyle: TextStyle(color: Colors.amber),
                       border: OutlineInputBorder(),
                     ),
                     controller: imageUrlController,
@@ -219,7 +234,6 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                 )
               ],
             ),
-            //   ),
           ),
         ));
   }
