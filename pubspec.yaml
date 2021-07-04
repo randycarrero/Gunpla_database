@@ -33,6 +33,7 @@ dependencies:
   google_fonts: ^2.1.0
   firebase_auth: ^1.2.0
   ant_icons: ^1.0.0
+  pie_chart: ^5.0.0
 
 dev_dependencies:
   flutter_test:
