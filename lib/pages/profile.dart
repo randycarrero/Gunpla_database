@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class Profile extends StatefulWidget {
+  Profile({Key key}) : super(key: key);
+
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -15,148 +17,146 @@ class _ProfileState extends State<Profile> {
     "No Grade": 2,
   };
   String email = FirebaseAuth.instance.currentUser.email;
-  int counter = 0;
+  final pageViewController = PageController();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          Column(
+      body: SafeArea(
+        child: Align(
+          alignment: Alignment(0, 0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                width: double.infinity,
-                child: Column(children: [
-                  SizedBox(
-                    height: 40.0,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
                   ),
-                  CircleAvatar(
-                    radius: 65.0,
-                    backgroundImage: AssetImage("assets/images/gunplalp.jpg"),
-                    backgroundColor: Colors.white,
+                  child: Image.asset(
+                    "assets/images/gunplalp.jpg",
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text('Email:',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      )),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    '$email',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                ]),
+                ),
               ),
-              Positioned(
-                  top: MediaQuery.of(context).size.height * 0.30,
-                  left: 10.0,
-                  right: 10.0,
-                  child: Card(
-                      child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Text(
+                'Email',
+                style: TextStyle(
+                  fontSize: 35.0,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: Text(
+                  '$email',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                            child: Column(
-                          children: [
-                            Text(
-                              'Gunplas Built',
-                              style: TextStyle(fontSize: 14.0),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "$counter",
-                              style: TextStyle(
-                                fontSize: 15.0,
-                              ),
-                            )
-                          ],
-                        )),
-                        Container(
-                            child: Column(
-                          children: [
-                            Text(
-                              'Favortied Gunplas',
-                              style: TextStyle(fontSize: 14.0),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              '$counter',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                              ),
-                            )
-                          ],
-                        )),
+                        Text(
+                          'Gunplas Built',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                        Text(
+                          '0',
+                          style: TextStyle(fontSize: 15.0),
+                        )
                       ],
                     ),
-                  ))),
-              SizedBox(
-                height: 30.0,
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Favorite Gunplas',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                        Text(
+                          '0',
+                          style: TextStyle(fontSize: 15.0),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  print("Click event on Container");
-                },
-                child: Card(
-                  child: ListTile(
-                    title: Text('Favorite List'),
-                    trailing: Icon(Icons.chevron_right_sharp),
-                    leading: Icon(
-                      Icons.favorite,
-                      color: Colors.redAccent,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.favorite,
+                    color: Color(0xFFCE0018),
+                  ),
+                  title: Text(
+                    'Favorite List',
+                    style: TextStyle(color: Color(0xFFcfcfcf)),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Color(0xFFcfcfcf),
+                    size: 20,
+                  ),
+                  tileColor: Color(0xFF3c3c3c),
+                  dense: false,
+                  onTap: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             FavoriteScreen ()));
+                  },
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  child: PieChart(
+                    dataMap: dataMap,
+                    animationDuration: Duration(milliseconds: 800),
+                    chartLegendSpacing: 32,
+                    chartRadius: MediaQuery.of(context).size.width / 3.2,
+                    // colorList: colorList,
+                    initialAngleInDegree: 0,
+                    legendOptions: LegendOptions(
+                      showLegendsInRow: false,
+                      legendPosition: LegendPosition.right,
+                      showLegends: true,
+                      legendTextStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    chartValuesOptions: ChartValuesOptions(
+                      showChartValueBackground: true,
+                      showChartValues: true,
+                      showChartValuesInPercentage: true,
+                      showChartValuesOutside: false,
+                      decimalPlaces: 0,
                     ),
                   ),
-                ),
-              ),
-              SizedBox(
-                height: 50.0,
-              ),
-              PieChart(
-                dataMap: dataMap,
-                animationDuration: Duration(milliseconds: 800),
-                chartLegendSpacing: 32,
-                chartRadius: MediaQuery.of(context).size.width / 3.2,
-                // colorList: colorList,
-                initialAngleInDegree: 0,
-                legendOptions: LegendOptions(
-                  showLegendsInRow: false,
-                  legendPosition: LegendPosition.right,
-                  showLegends: true,
-                  legendTextStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                chartValuesOptions: ChartValuesOptions(
-                  showChartValueBackground: true,
-                  showChartValues: true,
-                  showChartValuesInPercentage: true,
-                  showChartValuesOutside: false,
-                  decimalPlaces: 0,
                 ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
