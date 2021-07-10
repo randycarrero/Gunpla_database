@@ -22,7 +22,7 @@ final kBoxDecorationStyle = BoxDecoration(
 
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
   primary: Color(0xFF9E9E9E),
-  minimumSize: Size(88, 36),
+  minimumSize: Size(300, 55),
   elevation: 5.0,
   padding: EdgeInsets.all(15.0),
   shape: const RoundedRectangleBorder(
@@ -32,11 +32,20 @@ final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
 
 final ButtonStyle raisedButtonStyle2 = ElevatedButton.styleFrom(
   primary: Colors.amber[700],
-  minimumSize: Size(88, 36),
+  minimumSize: Size(300, 55),
   elevation: 5.0,
   padding: EdgeInsets.all(15.0),
   shape: const RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(30.0)),
+  ),
+);
+
+final ButtonStyle raisedButtonStyle3 = ElevatedButton.styleFrom(
+  primary: Color(0xFFA90606),
+  minimumSize: Size(150, 50),
+  elevation: 5.0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
   ),
 );
 

@@ -24,7 +24,8 @@ class LeadingImage extends StatelessWidget {
 }
 
 class GunplaDetailsScreen extends StatelessWidget {
-  final CollectionReference collectionReference = FirebaseFirestore.instance.collection('gunpla');
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('gunpla');
 
   GunplaDetailsScreen(this.document);
 
@@ -38,41 +39,16 @@ class GunplaDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Gunpla Detail"),
         actions: [
-          StreamBuilder<List<String>>(
-              stream: context.read<Backend>().favoritedGunplas,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                final favoritedGunplas = snapshot.data;
-                final isGunplasFavorited = favoritedGunplas.contains(document['name']);
-                IconButton(
-                  onPressed: ()  {
-                    context.read<Backend>().setFavoritedGunpla(
-                          id: document['name'],
-                          favorited: !isGunplasFavorited,
-                        );
-                  },
-                  icon: isGunplasFavorited
-                      ? const Icon(
-                          AntIcons.heart,
-                          color: Colors.redAccent,
-                        )
-                      : const Icon(AntIcons.heart_outline),
-                );
-              })
-          // IconButton(
-          // onPressed: (){},
-          // Icon(
-          //   Icons.favorite_outlined,
-          // ),
-          // ),
-          // IconButton(
-          //   onPressed: () {},
-          //   icon: Icon(Icons.edit),
-          // )
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.favorite_outlined,
+            ),
+            // ),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: Icon(Icons.edit),
+          )
         ],
       ),
       body: ListView(

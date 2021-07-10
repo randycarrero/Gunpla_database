@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gunpla_database/pages/favorites_screen.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class Profile extends StatefulWidget {
@@ -64,42 +65,47 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Gunplas Built',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text(
-                          '0',
-                          style: TextStyle(fontSize: 15.0),
-                        )
-                      ],
+              Divider(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Gunplas Built',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                          Text(
+                            '0',
+                            style: TextStyle(fontSize: 15.0),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Favorite Gunplas',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text(
-                          '0',
-                          style: TextStyle(fontSize: 15.0),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Favorite Gunplas',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                          Text(
+                            '0',
+                            style: TextStyle(fontSize: 15.0),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
+              Divider(),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: ListTile(
@@ -119,11 +125,10 @@ class _ProfileState extends State<Profile> {
                   tileColor: Color(0xFF3c3c3c),
                   dense: false,
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) =>
-                    //             FavoriteScreen ()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FavoriteScreen()));
                   },
                 ),
               ),
