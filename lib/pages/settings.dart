@@ -47,7 +47,7 @@ class _SettingState extends State<Setting> {
                                 Align(
                                   alignment: Alignment(0, 0),
                                   child: Image.asset(
-                                    'assets/images/Gunplalp.jpg',
+                                    'assets/images/gunplalp.jpg',
                                     width: MediaQuery.of(context).size.width,
                                     height: 130,
                                     fit: BoxFit.cover,
