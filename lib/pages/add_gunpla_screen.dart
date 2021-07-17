@@ -68,15 +68,21 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                   height: 30,
                 ),
                 Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Name",
-                      labelStyle: TextStyle(color: Colors.amber),
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat', color: Color(0xFF8B97A2)),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                     ),
                     controller: nameController,
                     validator: (value) {
@@ -85,21 +91,32 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xFF8B97A2),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Series",
-                      labelStyle: TextStyle(color: Colors.amber),
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat', color: Color(0xFF8B97A2)),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                     ),
                     controller: seriesController,
                     validator: (value) {
@@ -108,22 +125,33 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xFF8B97A2),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Grade",
-                      labelStyle: TextStyle(color: Colors.amber),
-                      helperText: "Add coma after every grade",
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat', color: Color(0xFF8B97A2)),
+                      hintText: 'Add coma after every grade',
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                     ),
                     controller: gradeController,
                     validator: (value) {
@@ -132,22 +160,33 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xFF8B97A2),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Scale",
-                      labelStyle: TextStyle(color: Colors.amber),
-                      helperText: "Add coma after every scale",
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat', color: Color(0xFF8B97A2)),
+                      hintText: 'Add coma after every scale',
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                     ),
                     controller: scaleController,
                     validator: (value) {
@@ -156,21 +195,32 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xFF8B97A2),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Exclusive",
-                      labelStyle: TextStyle(color: Colors.amber),
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat', color: Color(0xFF8B97A2)),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                     ),
                     controller: exclusiveController,
                     validator: (value) {
@@ -179,21 +229,32 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xFF8B97A2),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber)),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                       labelText: "Image Url",
-                      labelStyle: TextStyle(color: Colors.amber),
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat', color: Color(0xFF8B97A2)),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1)),
                     ),
                     controller: imageUrlController,
                     validator: (value) {
@@ -202,6 +263,11 @@ class _AddGunplaScreenState extends State<AddGunplaScreen> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xFF8B97A2),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(
