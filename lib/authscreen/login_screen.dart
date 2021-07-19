@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gunpla_database/app/constants.dart';
 import 'package:gunpla_database/home/home_screen.dart';
 import 'reset_screen.dart';
@@ -39,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Align(
               alignment: Alignment(0, 0),
               child: Image.asset(
-                'assets/images/Gunplabg.jpg',
+                'assets/images/gunplabg.jpg',
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
