@@ -40,3 +40,4 @@ ios/Runner/GeneratedPluginRegistrant.h
 android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
 android/local.properties
 .env
+android/app/google-services.json
