@@ -38,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Align(
               alignment: Alignment(0, 0),
               child: Image.asset(
-                'assets/images/Gunplabg.jpg',
+                'assets/images/gunplabg.jpg',
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
